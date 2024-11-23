@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-// import 'insert.dart';
+import 'package:crud_perpustakaan/insert.dart';
 // import 'update.dart';
 
 class BookListPage extends StatefulWidget {
@@ -33,7 +33,7 @@ class _BookListPageState extends State<BookListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( //Scaffold digunakan untuk membuat tampilan dasar aplikasi
         appBar: AppBar(
           title: const Text('Daftar Buku'),
           centerTitle: true,
@@ -73,7 +73,7 @@ class _BookListPageState extends State<BookListPage> {
                           ), //?? digunakan untuk menampilkan teks default jika data buku kosong
                         ],
                       ),
-                      trailing: Row(
+                      trailing: Row( //trailing digunakan untuk mengatur posisi tombol/icon di bagian kanan
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           //Tombol edit
@@ -104,7 +104,7 @@ class _BookListPageState extends State<BookListPage> {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return AlertDialog(
+                                    return AlertDialog( //
                                         title: const Text('Delete Book'),
                                         content: const Text(
                                             'Are you sure you want to delete this book?'),
@@ -129,6 +129,21 @@ class _BookListPageState extends State<BookListPage> {
                           )
                         ],
                       ));
-                }));
+                }),
+                //Fungsi untuk membuat FloatingButton
+                floatingActionButton: FloatingActionButton(
+                  onPressed: () {
+                    // Navigasi ke halaman InsertPage
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AddBookPage(),
+                      ),
+                    );
+                  },
+                  child: const Icon(Icons.add), // Ikon plus untuk menambahkan buku
+                    tooltip: 'Tambah Buku',
+                )
+                );
   }
 }
